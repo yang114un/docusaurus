@@ -7,6 +7,7 @@
 
 import {
   JoiFrontMatter as Joi, // Custom instance for frontmatter
+  PlatformDependentConfigSchema,
   URISchema,
   FrontMatterTagsSchema,
   FrontMatterTOCHeadingLevels,
@@ -21,8 +22,8 @@ import {DocFrontMatter} from './types';
 const DocFrontMatterSchema = Joi.object<DocFrontMatter>({
   id: Joi.string(),
   title: Joi.string().allow(''), // see https://github.com/facebook/docusaurus/issues/4591#issuecomment-822372398
-  hide_title: Joi.boolean(),
-  hide_table_of_contents: Joi.boolean(),
+  hide_title: PlatformDependentConfigSchema(Joi.boolean()),
+  hide_table_of_contents: PlatformDependentConfigSchema(Joi.boolean()),
   keywords: Joi.array().items(Joi.string().required()),
   image: URISchema,
   description: Joi.string().allow(''), // see  https://github.com/facebook/docusaurus/issues/4591#issuecomment-822372398

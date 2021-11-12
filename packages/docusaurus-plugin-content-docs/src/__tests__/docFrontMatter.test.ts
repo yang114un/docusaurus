@@ -91,15 +91,23 @@ describe('validateDocFrontMatter title', () => {
 describe('validateDocFrontMatter hide_title', () => {
   testField({
     prefix: 'hide_title',
-    validFrontMatters: [{hide_title: true}, {hide_title: false}],
+    validFrontMatters: [
+      {hide_title: true},
+      {hide_title: false},
+      {hide_title: {desktop: true, mobile: false}},
+    ],
     convertibleFrontMatter: [
       [{hide_title: 'true'}, {hide_title: true}],
       [{hide_title: 'false'}, {hide_title: false}],
+      [
+        {hide_title: {mobile: 'false', desktop: 'true'}},
+        {hide_title: {mobile: false, desktop: true}},
+      ],
     ],
     invalidFrontMatters: [
-      [{hide_title: 'yes'}, 'must be a boolean'],
-      [{hide_title: 'no'}, 'must be a boolean'],
-      [{hide_title: ''}, 'must be a boolean'],
+      [{hide_title: 'yes'}, 'must be one of [boolean, object]'],
+      [{hide_title: 'no'}, 'must be one of [boolean, object]'],
+      [{hide_title: ''}, 'must be one of [boolean, object]'],
     ],
   });
 });
@@ -116,9 +124,9 @@ describe('validateDocFrontMatter hide_table_of_contents', () => {
       [{hide_table_of_contents: 'false'}, {hide_table_of_contents: false}],
     ],
     invalidFrontMatters: [
-      [{hide_table_of_contents: 'yes'}, 'must be a boolean'],
-      [{hide_table_of_contents: 'no'}, 'must be a boolean'],
-      [{hide_table_of_contents: ''}, 'must be a boolean'],
+      [{hide_table_of_contents: 'yes'}, 'must be one of [boolean, object]'],
+      [{hide_table_of_contents: 'no'}, 'must be one of [boolean, object]'],
+      [{hide_table_of_contents: ''}, 'must be one of [boolean, object]'],
     ],
   });
 });

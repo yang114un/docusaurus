@@ -8,6 +8,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import useWindowSize from '@theme/hooks/useWindowSize';
+import usePlatformValue from '@theme/hooks/usePlatformValue';
 import DocPaginator from '@theme/DocPaginator';
 import DocVersionBanner from '@theme/DocVersionBanner';
 import Seo from '@theme/Seo';
@@ -25,12 +26,14 @@ export default function DocItem(props: Props): JSX.Element {
   const {
     image,
     keywords,
-    hide_title: hideTitle,
-    hide_table_of_contents: hideTableOfContents,
+    hide_title: hideTitleConfig,
+    hide_table_of_contents: hideTableOfContentsConfig,
     toc_min_heading_level: tocMinHeadingLevel,
     toc_max_heading_level: tocMaxHeadingLevel,
   } = frontMatter;
   const {description, title} = metadata;
+  const hideTitle = usePlatformValue(hideTitleConfig);
+  const hideTableOfContents = usePlatformValue(hideTableOfContentsConfig);
 
   // We only add a title if:
   // - user asks to hide it with frontmatter

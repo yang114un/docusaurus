@@ -1,6 +1,5 @@
 ---
 title: Docusaurus 2 Changelog
-hide_title: true
 sidebar_label: Changelog
 ---
 
