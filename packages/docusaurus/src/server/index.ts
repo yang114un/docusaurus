@@ -316,6 +316,15 @@ export async function load(
   plugins.push(createBootstrapPlugin({siteConfig}));
   plugins.push(createMDXFallbackPlugin({siteDir, siteConfig}));
 
+  // Load CSS client modules
+  const genCSSClientModules = generate(
+    generatedFilesDir,
+    'css-client-modules.js',
+    `export default [\n${siteConfig.styling.css
+      .map((module) => `import('${escapePath(module)}'),`)
+      .join('\n')}\n];\n`,
+  );
+
   // Load client modules.
   const clientModules = loadClientModules(plugins);
   const genClientModules = generate(
@@ -402,6 +411,7 @@ ${Object.keys(registry)
   );
 
   await Promise.all([
+    genCSSClientModules,
     genClientModules,
     genSiteConfig,
     genRegistry,

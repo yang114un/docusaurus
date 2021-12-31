@@ -22,6 +22,10 @@ export type ThemeConfig = {
   [key: string]: unknown;
 };
 
+export type StylingConfig = {
+  css: string[];
+};
+
 // Docusaurus config, after validation/normalization
 export interface DocusaurusConfig {
   baseUrl: string;
@@ -33,6 +37,7 @@ export interface DocusaurusConfig {
   // trailingSlash undefined = legacy retrocompatible behavior => /file => /file/index.html
   trailingSlash: boolean | undefined;
   i18n: I18nConfig;
+  styling: StylingConfig;
   onBrokenLinks: ReportingSeverity;
   onBrokenMarkdownLinks: ReportingSeverity;
   onDuplicateRoutes: ReportingSeverity;
@@ -82,6 +87,9 @@ export type Config = Overwrite<
     url: Required<DocusaurusConfig['url']>;
     baseUrl: Required<DocusaurusConfig['baseUrl']>;
     i18n?: DeepPartial<DocusaurusConfig['i18n']>;
+    styling?: Omit<StylingConfig, 'css'> & {
+      css?: string | string[];
+    };
   }
 >;
 
@@ -419,6 +427,7 @@ interface HtmlTagObject {
   innerHTML?: string;
 }
 
+// TODO weird useless type, refactor
 export type ValidationResult<T> = T;
 
 export type ValidationSchema<T> = Joi.ObjectSchema<T>;

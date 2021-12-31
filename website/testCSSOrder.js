@@ -41,14 +41,17 @@ const EXPECTED_CSS_MARKERS = [
   '.pills__item',
   '.tabs__item',
 
-  // Test markers
-  '.test-marker-site-custom-css-unique-rule',
+  // Markers, using Webpack require()
+  '.test-marker-theme-custom-css-legacy', // TODO should be removed later
   '.test-marker-site-client-module',
   '.test-marker-theme-layout',
-  '.test-marker-site-index-page',
 
-  // lazy loaded lib
+  // Markers, using Webpack dynamic import() (routes use dynamic imports)
+  '.test-marker-site-index-page',
+  '.test-marker-site-custom-css-unique-rule',
   '.DocSearch-Modal',
+  '.test-marker-theme-code-block',
+  '.test-marker-theme-doc-item',
 ];
 
 const cssDirName = path.join(__dirname, 'build', 'assets', 'css');
