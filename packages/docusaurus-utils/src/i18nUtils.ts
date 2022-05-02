@@ -100,8 +100,10 @@ export function localizePath({
   };
 }): string {
   const shouldLocalizePath: boolean =
-    //
-    options.localizePath ?? i18n.currentLocale !== i18n.defaultLocale;
+    // By default, we don't localize the path of defaultLocale
+    options.localizePath ??
+    (i18n.currentLocale !== i18n.defaultLocale ||
+      i18n.localeConfigs[i18n.currentLocale]!.baseUrl !== undefined);
 
   if (!shouldLocalizePath) {
     return originalPath;

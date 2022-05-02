@@ -47,6 +47,7 @@ export type I18nLocaleConfig = {
   htmlLang: string;
   direction: string;
   calendar: string;
+  baseUrl: string;
 };
 
 export type I18nConfig = {

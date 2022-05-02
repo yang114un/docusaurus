@@ -152,6 +152,7 @@ module.exports = {
 - `label`: the label to use for this locale
 - `direction`: `ltr` (default) or `rtl` (for [right-to-left languages](https://developer.mozilla.org/en-US/docs/Glossary/rtl) like Arabic, Hebrew, etc.)
 - `htmlLang`: BCP 47 language tag to use in `<html lang="...">` and in `<link ... hreflang="...">`
+- `baseUrl`: the baseUrl to use for this locale
 - `calendar`: the [calendar](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale/calendar) used to calculate the date era. Note that it doesn't control the actual string displayed: `MM/DD/YYYY` and `DD/MM/YYYY` are both `gregory`. To choose the format (`DD/MM/YYYY` or `MM/DD/YYYY`), set your locale name to `en-GB` or `en-US` (`en` means `en-US`).
 
 ### `noIndex` {#noindex}
